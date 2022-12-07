@@ -1,32 +1,16 @@
-from bs4 import BeautifulSoup
-import requests
+# LCR
+# Using regex to find flight information
 import re
-def regex(html_doc, case1,case2):
+
+# Function takes an html file, and two cases.
+def regex(html_doc, case1, case2):
+    # Searching for case1
     x = re.search(case1, html_doc)
+    # Group these cases
     x = re.search(case1, html_doc).group()
+    # Search these cases for case2
     y = re.search(case2, x)
+    # Group the remaining cases
     y = re.search(case2, x).group()
-    #print(x)
-    #print(y)
+    # Return cases
     return y
-url = 'https://flightaware.com/live/flight/UAE523'
-r = requests.get(url)
-r.text
-html = r.text
-
-
-
-
-
-
-
-x = re.search("'origin', '....'", html).group()
-#print(x)
-y = re.search("[A-Z]...", x).group()
-#print(y)
-soup = BeautifulSoup(html, 'html.parser')
-
-
-#print(soup.find_all("div", class_="flightPageCondensedSummary"))
-#cls = soup.div
-#print(cls)
